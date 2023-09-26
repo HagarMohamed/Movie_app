@@ -1,13 +1,26 @@
 
 import { Col, Container, Row } from 'react-bootstrap'
 import logo from '../images/logo.png'
-const NavBar = ({searchFun}) => {
-    // const [word, setValue] = useState("");
+import { useDispatch } from 'react-redux';
+import { getAllMovie, searchOnMovie } from '../redux/actions/movieAction';
+const NavBar = () => {
+    
+   const dispatch = useDispatch();
   
     function handleChange(word) {
-        // e.preventDefault();
-        // setValue(e.target.value);
         searchFun(word);
+    }
+
+    const searchFun = async(word) =>{
+      if(word === ""){
+      
+        dispatch(getAllMovie())
+      }else{
+        
+        dispatch(searchOnMovie(word))
+        // setPageCount(res.data.total_pages);
+      }
+    
     }
   
    
